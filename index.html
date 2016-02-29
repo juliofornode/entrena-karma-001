@@ -88,10 +88,25 @@
     <ul>
         <li>The first task will be to instantiate the Angular module that holds the service. We do
         this using <code>angular.mock.module('moduleName')</code></li>
+        <li>angular.mock.module() allows us to configure modules individually to be used in
+        unit tests.</li>
+        <li>angular.mock.module admits 3 kinds of parameters:</li>
+        <ol>
+            <li>a string: the name of the module to load. Does not allow to create custom components
+            for the unit test.</li>
+            <li>a anonymous function: the function creates a service using the factory function.</li>
+            <li>an anomymous object: the object creates a service using the value function. Limitation:
+            you cannot inject other services.</li>
+        </ol>
 
 
     </ul>
 
+
+    <br><p><b>Instantiating module components: the inject function.</b></p>
+    <ul>
+        <li></li>
+    </ul>
 
 
 

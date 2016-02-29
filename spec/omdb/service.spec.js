@@ -8,12 +8,52 @@
 
         it('should return the movie searched', function () {
 
-            var service = {
-                search: function (query) {
-                    return movieData;
-                }
-            };
-            expect(service.search('Star Wars')).toBe(movieData);
+            //create the service as an empty object
+            var omdbAPI = {};
+
+
+
+            //load module, define the service omdbAPI
+            angular.mock.module(function ($provide) {
+
+                $provide.factory('omdbAPI', function () {
+                    var search = function (query) {
+                        return movieData;
+                    };
+
+                    return {
+                        search: search
+                    }
+
+                })
+
+            });
+
+
+            /* alternative approach using the anonymous function
+
+                 angular.mock.module({
+                 omdbAPI: {
+                 search: function (query) {
+                 return movieData;}
+                 }
+                 });
+
+             */
+
+
+
+
+
+
+
+
+            //inject the service omdbAPI. To avoid name conflict, we use _ for the parameter name
+            angular.mock.inject(function (_omdbAPI_) {
+                omdbAPI = _omdbAPI_;
+            });
+
+            expect(omdbAPI.search('Star Wars')).toBe(movieData);
 
         })
 
